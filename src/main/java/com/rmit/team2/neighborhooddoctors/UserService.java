@@ -16,10 +16,15 @@ public class UserService {
     }
 
     public Optional<User> getUser(String email, String password) {
-        return userRepository.findByEmail(email, password);
+        return userRepository.findByCredentials(email, password);
     }
 
-    public void addUser(User user) {
+    public boolean addUser(User user) {
+        //return false if user already exists
+        if (userRepository.findByEmail(user.getEmail()).isPresent()) {
+            return false;
+        }
         userRepository.save(user);
+        return true;
     }
 }

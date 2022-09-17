@@ -2,10 +2,9 @@ package com.rmit.team2.neighborhooddoctors;
 
 import com.rmit.team2.neighborhooddoctors.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 import java.util.Optional;
@@ -20,19 +19,17 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/")
-    public String hello() {
-        return "";
-    }
-
     @GetMapping("/user")
     public Optional<User> getUser(@RequestBody Map<String, Object> loginInfoMap) {
         return this.userService.getUser(loginInfoMap.get("email").toString(), loginInfoMap.get("password").toString());
     }
 
     @PostMapping("/user")
-    public String postUser(@RequestBody User user) {
-        this.userService.addUser(user);
-        return "";
+    public ResponseEntity<String> postUser(@RequestBody User user) {
+         if (this.userService.addUser(user)){
+             return ResponseEntity.status(HttpStatus.CREATED).body(null);
+         }
+
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
     }
 }
