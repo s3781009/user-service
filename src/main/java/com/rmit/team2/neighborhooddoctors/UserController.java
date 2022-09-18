@@ -20,8 +20,13 @@ public class UserController {
     }
 
     @GetMapping("/user")
-    public Optional<User> getUser(@RequestParam("email") String email, @RequestParam("password") String password) {
-        return this.userService.getUser(email, password);
+    public ResponseEntity<String> getUser(@RequestParam("email") String email, @RequestParam("password") String password) {
+        var res = this.userService.getUser(email, password);
+
+        if (res.isPresent()) {
+            return ResponseEntity.status(200).body(res.toString());
+        }
+        return ResponseEntity.status(404).body(null);
     }
 
     @PostMapping("/user")
