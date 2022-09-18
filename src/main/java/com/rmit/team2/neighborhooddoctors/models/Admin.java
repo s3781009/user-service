@@ -10,14 +10,12 @@ public class Admin {
     @SequenceGenerator(name = "admin_seq", sequenceName = "admin_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "admin_seq")
     private long id;
-    private String firstName;
-    private String lastName;
+    private String userName;
     private String email;
     private String password;
 
-    public Admin(String firstName, String lastName, String email, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Admin(String userName, String email, String password) {
+        this.userName = userName;
         this.email = email;
         this.password = password;
     }
@@ -38,12 +36,8 @@ public class Admin {
         this.id = id;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public void setEmail(String email) {
@@ -58,13 +52,10 @@ public class Admin {
         return email;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getUserName() {
+        return userName;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
 }
 
 
