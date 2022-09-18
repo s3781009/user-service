@@ -20,8 +20,8 @@ public class UserController {
     }
 
     @GetMapping("/user")
-    public Optional<User> getUser(@RequestBody Map<String, Object> loginInfoMap) {
-        return this.userService.getUser(loginInfoMap.get("email").toString(), loginInfoMap.get("password").toString());
+    public Optional<User> getUser(@RequestParam("email") String email, @RequestParam("password") String password) {
+        return this.userService.getUser(email, password);
     }
 
     @PostMapping("/user")
