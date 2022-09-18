@@ -25,6 +25,7 @@ public class UserService {
             return false;
         }
         userRepository.save(user);
+
         return true;
     }
 }
