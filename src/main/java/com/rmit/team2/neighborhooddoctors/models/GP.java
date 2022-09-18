@@ -10,14 +10,14 @@ public class GP {
     @SequenceGenerator(name = "gp_seq", sequenceName = "gp_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gp_seq")
     private long id;
-    private String name;
-    private String location;
+    private String firstName;
+    private String lastName;
     private String email;
     private String password;
 
-    public GP(String Name, String location, String email, String password) {
-        this.name = Name;
-        this.location = location;
+    public GP(String firstName, String lastName, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
         this.password = password;
     }
@@ -38,12 +38,12 @@ public class GP {
         this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public void setEmail(String email) {
@@ -58,11 +58,11 @@ public class GP {
         return email;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public String getLocation() {
-        return location;
+    public String getLastName() {
+        return lastName;
     }
 }
